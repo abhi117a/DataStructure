@@ -2,7 +2,7 @@ package CTC_2;
 
 public class ParanthesisMatching {
 
-	String str = "[{sahjsh(&asjbkdajdasd)}]";
+	String str = "[{sahjsh(&asjbkdajdasd]}]";
 	int top =-1;
 	boolean flag = true;
 	char stack[];
