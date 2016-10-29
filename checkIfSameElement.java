@@ -1,6 +1,7 @@
 package CTC_2;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class checkIfSameElement {
 
@@ -34,14 +35,33 @@ public class checkIfSameElement {
 		System.out.println("Every Element is unique");
 	}
 	}
+	public void hashStore(int A[]){
+//Using Hash Map space complexity will be high as new Data structure is used but time complexity is just O(n) Worst case for HashMap and array iteration
+		HashMap hm = new HashMap();
+		boolean flag = true;
+		for(int i:A){
+			if(hm.containsValue(i)){
+				System.out.println("Similar element is present");
+				flag = false;	
+			}
+			else{
+			hm.put(i, i);
+			}
+			}
+		if(flag==true)
+		System.out.println("Every Element is Unique");
+	}
 	
 	
 	public static void main(String[] args) {
+
 		checkIfSameElement cs = new checkIfSameElement();
-		int a[] = {1,6,11,7,5,10,11,2};
+		int a[] = {1,6,7,5,11,11,2};
 		cs.bruteForce(a);
 		System.out.println("*******************");
 		cs.sortSearch(a);
+		System.out.println("*******************");
+		cs.hashStore(a);
 
 	}
 
