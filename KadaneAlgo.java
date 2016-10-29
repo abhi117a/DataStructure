@@ -20,7 +20,7 @@ public class KadaneAlgo {
 					right = i;
 				}
 		}
-		System.out.println("Values from Index "+left+" to "+right+" have maxSum " + maxSum ); 
+		System.out.println("Values from Index "+left+" to "+right+" have Max Sum " + maxSum ); 
 		
 	}
 	
