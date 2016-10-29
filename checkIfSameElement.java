@@ -21,7 +21,7 @@ public class checkIfSameElement {
 	}
 	
 	public void sortSearch(int A[]){
-//The time complexity will be just O(n) as sorting takes nlogn(Quicksort for inbuilt Java sort) and then just a linear search
+//The time complexity will be just O(nlogn) as sorting takes nlogn(Quicksort for inbuilt Java sort) and then just a linear search
 		boolean flag = true;
 		Arrays.sort(A);
 		for(int i=0;i<A.length-1;i++){
