@@ -1,7 +1,7 @@
 package CTC_2;
 
 import java.util.Arrays;
-
+//If 2 values occur at same number of time it will give as last value as output! Time complexity O(n^2)
 public class findNumberofTimes {
 
 	public void find(int A[]){
