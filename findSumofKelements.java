@@ -31,7 +31,7 @@ public class findSumofKelements {
 		}
 		if(hm.containsValue(k)){
 		System.out.println("Value "+k+" itself present");
-		System.exit(0);
+		return;
 		}
 		while(temp<A.length){
 			int f = hm.get(temp);
@@ -39,7 +39,7 @@ public class findSumofKelements {
 			if(hm.containsValue(f)){
 				System.out.println("Values are present for summation of "+k);
 				flag= false;
-				//System.exit(0);
+				return;
 			}
 			temp++;
 		}if(flag==true){
@@ -49,7 +49,7 @@ public class findSumofKelements {
 	
 	public static void main(String[] args) {
 		findSumofKelements fs = new findSumofKelements();
-		int a []= {1,2,3,7};
+		int a []= {1,2,3,4};
 		fs.hashUsage(a, 7);
 	}
 
