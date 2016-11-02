@@ -45,13 +45,29 @@ public class TreeFunction{
 		
 	}
 	
+	public void preOrderTraversal(TreeNode root){
+		if(root!=null){
+			System.out.println(root.data);
+			preOrderTraversal(root.leftChild);
+			preOrderTraversal(root.rightChild);
+		}
+	}
+	
+	public void postOrderTraversal(TreeNode root){
+		if(root!= null){
+			postOrderTraversal(root.leftChild);
+			postOrderTraversal(root.rightChild);
+			System.out.println(root.data);
+		}
+	}
+	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
 		tf.addData(20);
 		tf.addData(10);
 		tf.addData(30);
-		tf.addData(15);
-		tf.addData(44);
+		//tf.addData(15);
+		//tf.addData(44);
 		tf.inOrderTraversal(root);
 		}
 	
