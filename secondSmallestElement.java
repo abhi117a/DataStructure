@@ -9,6 +9,7 @@ public class secondSmallestElement {
 		System.out.println("Second smallest element is: "+A[1]);
 	}
 	public void find(int A[]){
+		//Time Complexity is O(n).
 	int small = Integer.MAX_VALUE;
 	int small2 = Integer.MAX_VALUE;
 		for(int i=0;i<A.length;i++){
