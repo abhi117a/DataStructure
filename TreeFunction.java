@@ -144,6 +144,42 @@ public class TreeFunction{
 		}
 	}
 	
+	public void heightAndNoNodes(TreeNode root){
+		Stack<TreeNode> stqq = new Stack();
+		int count =1,height=0;;
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		if(q.isEmpty()){
+			q.add(root);
+			q.add(null);
+		}
+		while(!q.isEmpty()){
+			count++;
+			TreeNode temp = q.poll();
+			count++;
+			if(temp == null){
+				count--;
+				if(q.isEmpty()){
+					//System.out.println("Height is "+height);
+					break;
+				}
+				else {
+					q.add(null);
+					height++;
+				}
+			}
+			else {
+			if(temp.leftChild!=null){
+				q.add(temp.leftChild);
+			}
+			if(temp.rightChild!= null){
+				q.add(temp.rightChild);
+			}
+		}
+			}
+		System.out.println("Size of Tree "+ height);
+		
+	}
+	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
 		tf.addData(20);
@@ -159,6 +195,7 @@ public class TreeFunction{
 		//tf.findElement(root, 88);
 		System.out.println("*******************");
 		tf.printRev(root);
+		tf.heightAndNoNodes(root);
 		}
 	
 }
