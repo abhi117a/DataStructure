@@ -1,6 +1,6 @@
 package CTC_2;
 
-public class Stack {
+public class Stack_imp {
 
 	int top;
 	int [] stack;
@@ -42,12 +42,12 @@ public class Stack {
 		System.out.println("Top of Stack: "+ stack[top]);
 	}
 	public void sizeStack(){
-		System.out.println("Size of stack: "+ top);
+		System.out.println("Size of stack: "+ top+1);
 	}
 	
 	
 	public static void main(String[] args) {
-		Stack st = new Stack();
+		Stack_imp st = new Stack_imp();
 		st.create(5);
 		st.push(10);
 		st.push(11);
