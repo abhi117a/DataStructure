@@ -101,6 +101,26 @@ public class TreeFunction{
 		
 	}
 	
+	public void findElement(TreeNode root, int lookup){
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		if(root!= null){
+			q.add(root);
+		}
+		while(!q.isEmpty()){
+			TreeNode temp = q.poll();
+			if(temp.data==lookup){
+				System.out.println("Element found");
+				return;
+			}
+			if(temp.leftChild!=null){
+				q.add(temp.leftChild);
+			}
+			if(temp.rightChild!= null){
+				q.add(temp.rightChild);
+			}
+		}
+		System.out.println("Element not found");
+	}
 	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
@@ -113,6 +133,9 @@ public class TreeFunction{
 		System.out.println("*******************");
 		tf.levelOrderTraversal(root);
 		tf.findminMax(root);
+		System.out.println("*******************");
+		tf.findElement(root, 88);
+		
 		}
 	
 }
