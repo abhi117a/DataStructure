@@ -180,6 +180,27 @@ public class TreeFunction{
 		
 	}
 	
+	public void countLeafNodes(TreeNode root){
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		int count=1;
+		if(root!=null){
+			q.add(root);
+		}
+		while(!q.isEmpty()){
+			TreeNode temp = q.poll();
+			if(temp.leftChild==null && temp.rightChild==null){
+				count++;
+			}
+			if(temp.leftChild!= null){
+				q.add(temp.leftChild);
+			}
+			if(temp.rightChild!=null){
+				q.add(temp.rightChild);
+			}
+		}
+		System.out.println("Number of leaf Nodes "+count);
+	}
+	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
 		tf.addData(20);
@@ -187,6 +208,8 @@ public class TreeFunction{
 		tf.addData(30);
 		tf.addData(15);
 		tf.addData(44);
+		tf.addData(8);
+		tf.addData(7);
 		//tf.inOrderTraversal(root);
 		System.out.println("*******************");
 		tf.levelOrderTraversal(root);
@@ -196,6 +219,7 @@ public class TreeFunction{
 		System.out.println("*******************");
 		tf.printRev(root);
 		tf.heightAndNoNodes(root);
+		tf.countLeafNodes(root);
 		}
 	
 }
