@@ -1,5 +1,8 @@
 package CTC_2;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 
 
 public class TreeFunction{
@@ -60,6 +63,22 @@ public class TreeFunction{
 			System.out.println(root.data);
 		}
 	}
+	public void levelOrderTraversal(TreeNode root){
+		Queue<TreeNode> queue =  new LinkedList<TreeNode>();
+		queue.add(root);
+		while(!queue.isEmpty()){
+			TreeNode temp = queue.poll();
+			System.out.println(temp.data);
+			if(temp.leftChild!= null){
+				queue.add(temp.leftChild);
+			}
+			if(temp.rightChild!=null){
+				queue.add(temp.rightChild);
+			}
+		}
+		
+	}
+	
 	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
@@ -69,6 +88,8 @@ public class TreeFunction{
 		//tf.addData(15);
 		//tf.addData(44);
 		tf.inOrderTraversal(root);
+		System.out.println("*******************");
+		tf.levelOrderTraversal(root);
 		}
 	
 }
