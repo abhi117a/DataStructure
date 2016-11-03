@@ -79,6 +79,28 @@ public class TreeFunction{
 		
 	}
 	
+	public void findminMax(TreeNode root){
+		int max;
+		Queue<TreeNode> queue = new LinkedList<TreeNode>();
+		max = root.data;
+		queue.add(root);
+		
+		while(!queue.isEmpty()){
+			TreeNode temp = queue.poll();
+			if(temp.data > max){
+				max = temp.data;
+			}
+			if(temp.leftChild!=null){
+				queue.add(temp.leftChild);
+			}
+			if(temp.rightChild!=null){
+				queue.add(temp.rightChild);
+			}
+		}
+		System.out.println("Max value is "+max);
+		
+	}
+	
 	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
@@ -90,6 +112,7 @@ public class TreeFunction{
 		tf.inOrderTraversal(root);
 		System.out.println("*******************");
 		tf.levelOrderTraversal(root);
+		tf.findminMax(root);
 		}
 	
 }
