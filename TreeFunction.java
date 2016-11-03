@@ -2,6 +2,7 @@ package CTC_2;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 
 
@@ -122,20 +123,42 @@ public class TreeFunction{
 		System.out.println("Element not found");
 	}
 	
+	public void printRev(TreeNode root){
+		Stack<Integer> stkqq = new Stack<Integer>();
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		if(q.isEmpty()){
+			q.add(root);
+		}
+		while(!q.isEmpty()){
+			TreeNode temp= q.poll();
+			stkqq.add(temp.data);
+			if(temp.rightChild!=null){
+				q.add(temp.rightChild);
+			}
+			if(temp.leftChild!=null){
+				q.add(temp.leftChild);
+			}
+		}
+		while(!stkqq.empty()){
+			System.out.println(stkqq.pop());
+		}
+	}
+	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
 		tf.addData(20);
 		tf.addData(10);
 		tf.addData(30);
-		//tf.addData(15);
-		//tf.addData(44);
-		tf.inOrderTraversal(root);
+		tf.addData(15);
+		tf.addData(44);
+		//tf.inOrderTraversal(root);
 		System.out.println("*******************");
 		tf.levelOrderTraversal(root);
-		tf.findminMax(root);
+		//tf.findminMax(root);
+		//System.out.println("*******************");
+		//tf.findElement(root, 88);
 		System.out.println("*******************");
-		tf.findElement(root, 88);
-		
+		tf.printRev(root);
 		}
 	
 }
