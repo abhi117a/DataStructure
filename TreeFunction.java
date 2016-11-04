@@ -226,8 +226,52 @@ public class TreeFunction{
 		
 	}
 	
+	public void findLevelWithMaxSum (TreeNode root){
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		int tempMax = Integer.MIN_VALUE;
+		int max = Integer.MIN_VALUE;
+		if(root!=null){
+			q.add(root);
+			q.add(null);
+			
+			while(!q.isEmpty()){
+			TreeNode temp = q.poll();
+			if(temp==null){
+				if(q.isEmpty()){
+					break;
+				}
+				if(tempMax > max){
+					max = tempMax;
+				}
+				tempMax =0;
+				q.add(null);
+			}
+			else {
+				tempMax = tempMax+temp.data;
+			if(temp.leftChild!= null){
+				q.add(temp.leftChild);
+			}
+			if(temp.rightChild!=null){
+				q.add(temp.rightChild);
+			}
+			}
+			}
+			System.out.println("The Max sum is "+max);
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
+//		TreeFunction tf1 = new TreeFunction();
+//		tf1.addData(40);
+//		tf1.addData(20);
+//		tf1.addData(60);
+//		tf1.addData(30);
+//		tf1.addData(88);
+//		tf1.addData(16);
+//		tf1.addData(14);
+		System.out.println();
 		tf.addData(20);
 		tf.addData(10);
 		tf.addData(30);
@@ -247,6 +291,7 @@ public class TreeFunction{
 		tf.countLeafNodes(root);
 		System.out.println("*******************");
 		tf.countNoFullNodes(root);
+		tf.findLevelWithMaxSum(root);
 		}
 	
 }
