@@ -201,6 +201,31 @@ public class TreeFunction{
 		System.out.println("Number of leaf Nodes "+count);
 	}
 	
+	public void countNoFullNodes (TreeNode root){
+		int count=0;
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		if(root!=null){
+			q.add(root);
+			if(root.leftChild!=null && root.rightChild!=null){
+				count++;
+			}
+		}
+			while(!q.isEmpty()){
+				TreeNode temp = q.poll();
+				if(temp.leftChild!=null && temp.rightChild!=null){
+					count++;
+				}
+				if(temp.leftChild!=null){
+					q.add(temp.leftChild);
+				}
+				if(temp.rightChild!=null){
+					q.add(temp.rightChild);
+				}
+			}
+			System.out.println("The number of full nodes is "+count);
+		
+	}
+	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
 		tf.addData(20);
@@ -220,6 +245,8 @@ public class TreeFunction{
 		tf.printRev(root);
 		tf.heightAndNoNodes(root);
 		tf.countLeafNodes(root);
+		System.out.println("*******************");
+		tf.countNoFullNodes(root);
 		}
 	
 }
