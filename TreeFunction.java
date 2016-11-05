@@ -261,6 +261,25 @@ public class TreeFunction{
 	}
 	
 	
+	public boolean findRecursion(TreeNode root, int data){
+		if(root==null){
+			return false;
+		}
+		if(root.data==data)
+			return true;
+		else {
+			return findRecursion(root.leftChild, data) || findRecursion(root.rightChild, data);
+	         }
+	}
+	public void check(){
+		if(findRecursion(root, 56)){
+			System.out.println("Value found");
+		}
+		else {
+			System.out.println("Value not found");
+		}
+	}
+	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
 //		TreeFunction tf1 = new TreeFunction();
@@ -292,6 +311,8 @@ public class TreeFunction{
 		System.out.println("*******************");
 		tf.countNoFullNodes(root);
 		tf.findLevelWithMaxSum(root);
+		tf.findRecursion(root, 2);
+		tf.check();
 		}
 	
 }
