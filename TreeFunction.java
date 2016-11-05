@@ -233,20 +233,12 @@ public class TreeFunction{
 		if(root!=null){
 			q.add(root);
 			q.add(null);
+			//tempMax = root.data;
+		}
 			
 			while(!q.isEmpty()){
 			TreeNode temp = q.poll();
-			if(temp==null){
-				if(q.isEmpty()){
-					break;
-				}
-				if(tempMax > max){
-					max = tempMax;
-				}
-				tempMax =0;
-				q.add(null);
-			}
-			else {
+			if(temp!=null) {
 				tempMax = tempMax+temp.data;
 			if(temp.leftChild!= null){
 				q.add(temp.leftChild);
@@ -255,11 +247,19 @@ public class TreeFunction{
 				q.add(temp.rightChild);
 			}
 			}
+			else{
+				if(tempMax >= max){
+					max = tempMax;
+				tempMax =0;
+				if(!q.isEmpty()){
+				q.add(null);
+				}
 			}
-			System.out.println("The Max sum is "+max);
+			}
 		}
-		
+			System.out.println("The Max sum is "+max);
 	}
+	
 	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
@@ -272,13 +272,13 @@ public class TreeFunction{
 //		tf1.addData(16);
 //		tf1.addData(14);
 		System.out.println();
-		tf.addData(20);
-		tf.addData(10);
-		tf.addData(30);
-		tf.addData(15);
-		tf.addData(44);
-		tf.addData(8);
-		tf.addData(7);
+		tf.addData(5);
+		tf.addData(2);
+		tf.addData(17);
+//		tf.addData(15);
+//		tf.addData(49);
+//		tf.addData(52);
+//		tf.addData(60);
 		//tf.inOrderTraversal(root);
 		System.out.println("*******************");
 		tf.levelOrderTraversal(root);
