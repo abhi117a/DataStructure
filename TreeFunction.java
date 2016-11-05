@@ -292,6 +292,15 @@ public class TreeFunction{
 			return(sizeRec(root.leftChild)+1+sizeRec(root.rightChild));
 		}
 	}
+	public int numberOfFUllNodes(TreeNode root){
+		if(root==null){
+			return 0;
+		}
+		if(root.leftChild != null && root.rightChild!= null){
+			return 1;
+		}
+		else return(numberOfFUllNodes(root.leftChild)+numberOfFUllNodes(root.rightChild));
+	}
 	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
@@ -327,6 +336,7 @@ public class TreeFunction{
 		tf.findRecursion(root, 2);
 		tf.check();
 		System.out.println("SIze of Tree with recursion method is "+tf.sizeRec(root));
+		System.out.println("Full nodes are "+tf.numberOfFUllNodes(root));
 		}
 	
 }
