@@ -302,6 +302,45 @@ public class TreeFunction{
 		
 	}
 	
+	
+	public void zigZag(TreeNode root){
+		Stack<TreeNode> stq = new Stack<TreeNode>();
+		stq.push(root);
+		
+		boolean flag = false;
+		while(!stq.isEmpty()){
+			Stack<TreeNode>tempStq = new Stack<TreeNode>();
+			
+			while(!stq.isEmpty()){
+				TreeNode temp  =stq.pop();
+				System.out.println(temp.data);
+				if(!flag){
+					if(temp.leftChild!=null){
+						tempStq.push(temp.leftChild);
+					}
+					if(temp.rightChild!=null){
+						tempStq.push(temp.rightChild);
+					}
+				}
+				else {
+					if(temp.rightChild!=null){
+						tempStq.push(temp.rightChild);
+					}
+					if(temp.leftChild!=null){
+						tempStq.push(temp.leftChild);
+					}
+				}
+			}
+			flag = !flag;
+			stq = tempStq;
+		}
+	}
+	public void ch(){
+		System.out.println(!false);
+	}
+
+	
+	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
 //		TreeFunction tf1 = new TreeFunction();
@@ -339,6 +378,8 @@ public class TreeFunction{
 		tf.check();
 		System.out.println("SIze of Tree with recursion method is "+tf.sizeRec(root));
 		System.out.println("Sum of nodes are "+tf.sumOfNodes(root));
+		tf.zigZag(root);
+		tf.ch();
 		}
 	
 }
