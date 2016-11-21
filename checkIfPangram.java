@@ -7,7 +7,9 @@ public class checkIfPangram {
 		int CHAR[] = new int [26];
 		for(int i=0;i<a.length();i++){
 			char x =a.charAt(i);
+			if(x >= 97 && x <= 122 ){
 			CHAR[x-97]++;
+			}
 		}
 		for(int i: CHAR){
 		if(i ==0){
@@ -20,7 +22,7 @@ public class checkIfPangram {
 	
 	public static void main(String[] args) {
 		checkIfPangram cp = new checkIfPangram();
-		cp.checkPangram("abcdefghijklmnopqrstuvwxyz");
+		cp.checkPangram("abcdefghijklm 12313nopqrstuvwxyz");
 
 	}
 
