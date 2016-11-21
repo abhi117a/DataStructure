@@ -1,5 +1,6 @@
 package CTC_2;
 
+
 public class LinkedList {
 	Node1 head;
 	public void addATBeginning(int data){
@@ -92,6 +93,20 @@ public class LinkedList {
 		}
 		
 		
+	}
+	public void detectACycle(){
+		Node1 slow=head;
+		Node1 fast=head;
+		while(slow.next!=null && fast.next!=null & fast.next.next!=null){
+			slow = slow.next;
+			fast = fast.next.next;
+			if(slow == fast){
+				System.out.println("Loop Found");
+				return;
+			}
+		}
+		System.out.println("No loop exists");
+		return;
 	}
 	
 	public static void main(String[] args) {
