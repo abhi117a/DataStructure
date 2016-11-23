@@ -157,6 +157,41 @@ public class LinkedList {
 	    
 	  
 	}
+	Node1 MergeLists(Node1 headA, Node1 headB) {
+	      
+	    Node1 head = new Node1();
+	    Node1 p = head;
+	    if(headA == null && headB == null){
+	        return null;
+	    }
+	    else {
+	        Node1 pa = headA;
+	        Node1 pb = headB;
+	        while(pa.next != null || pb.next != null){
+	            if(pa.data > pb.data){
+	                p = pb;
+	                p = p.next;
+	                pb = pb.next;
+	            }
+	            else {
+	                p = pa;
+	                p = p.next;
+	                pa = pa.next;
+	            }
+	            
+	        }
+	        if(pa.next == null){
+	            p = pb;
+	            return head;
+	        }
+	        else {
+	            p = pa;
+	            return head;
+	        }
+	    }
+
+	}
+
 	
 	public static void main(String[] args) {
 		LinkedList ls = new LinkedList();
