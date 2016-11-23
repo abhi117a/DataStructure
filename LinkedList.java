@@ -132,6 +132,31 @@ public class LinkedList {
 		
 		
 	}
+	int CompareLists(Node1 headA, Node1 headB) {
+	    // This is a "method-only" submission. 
+	    // You only need to complete this method 
+	    
+	    if(headA==null && headB != null || headA != null && headB == null){
+	        return 0;
+	    }
+	    else {
+	        Node1 pa = headA;
+	        Node1 pb = headB;
+	        while(pa.next != null && pb.next != null){
+	            pb = pb.next;
+	            pa = pa.next;
+	            if(pb.data != pa.data){
+	                return 0;
+	            }
+	        }
+	        if(pa.next == null && pb.next != null||pa.next != null && pb.next == null){
+	            return 0;
+	        }
+	        return 1;
+	    }
+	    
+	  
+	}
 	
 	public static void main(String[] args) {
 		LinkedList ls = new LinkedList();
