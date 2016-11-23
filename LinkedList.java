@@ -2,7 +2,7 @@ package CTC_2;
 
 
 public class LinkedList {
-	Node1 head;
+	static Node1 head;
 	public void addATBeginning(int data){
 		
 		if(head==null){
@@ -109,6 +109,30 @@ public class LinkedList {
 		return;
 	}
 	
+	public void reverseList(){
+		Node1 currNode = head;
+		Node1 nextNode = null;
+		Node1 prevNode = null;
+		if(head.next==null){
+			System.out.println("There is only one data");
+			return;
+		}
+		else {
+			while(currNode !=null){
+				nextNode = currNode.next;
+				currNode.next = prevNode;
+				prevNode = currNode;
+				currNode = nextNode;
+			}
+			head = prevNode;
+			System.out.println("\n Reverse Through Iteration");
+			
+			
+		}
+		
+		
+	}
+	
 	public static void main(String[] args) {
 		LinkedList ls = new LinkedList();
 		ls.addATBeginning(1);
@@ -117,11 +141,12 @@ public class LinkedList {
 		ls.addATBeginning(4);
 		ls.addATBeginning(5);
 		ls.addATBeginning(6);
+		ls.reverseList();
 //		ls.addAtEnd(1);
 //		ls.addAtEnd(2);
 //		ls.addAtEnd(3);
 		//ls.addatKnownLocation(1, 7);
-		ls.removeAtLocation(1);
+		//ls.removeAtLocation(1);
 		//ls.removeAtEnd();
 		//ls.removeAtBegining();
 		ls.printNodes();
