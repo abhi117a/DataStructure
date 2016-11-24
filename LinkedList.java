@@ -210,7 +210,22 @@ int GetNode(Node1 head,int n) {
     return p1.data;
 
 }
-
+Node1 RemoveDuplicates(Node1 head) {
+	  if(head==null){
+	      return null;
+	  }
+	    else {
+	        Node1 p = head;
+	        while(p.next != null){
+	            if(p.data == p.next.data){
+	               // p.next = null;
+	                p.next =p.next.next; 
+	            }
+	            p = p.next;
+	        }
+	        return head;
+	    }
+	}
 	
 	public static void main(String[] args) {
 		LinkedList ls = new LinkedList();
@@ -219,8 +234,9 @@ int GetNode(Node1 head,int n) {
 		ls.addATBeginning(3);
 		ls.addATBeginning(4);
 		ls.addATBeginning(5);
+		ls.addATBeginning(5);
 		ls.addATBeginning(6);
-		System.out.println(ls.GetNode(head, 3));
+		System.out.println(ls.RemoveDuplicates(head));
 		//ls.reverseList();
 //		ls.addAtEnd(1);
 //		ls.addAtEnd(2);
