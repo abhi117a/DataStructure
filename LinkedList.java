@@ -191,6 +191,25 @@ public class LinkedList {
 	    }
 
 	}
+    
+int GetNode(Node1 head,int n) {
+     int count =1;
+    Node1 p = head;
+    while(p != null){
+        p = p.next;
+        count++;
+    }
+    Node1 p1 = head;
+    while(p1 != null){
+    	if(count!=n){
+        p1 = p1.next;
+            count--;
+    	}
+    	return p1.data;
+    }
+    return p1.data;
+
+}
 
 	
 	public static void main(String[] args) {
@@ -201,7 +220,8 @@ public class LinkedList {
 		ls.addATBeginning(4);
 		ls.addATBeginning(5);
 		ls.addATBeginning(6);
-		ls.reverseList();
+		System.out.println(ls.GetNode(head, 3));
+		//ls.reverseList();
 //		ls.addAtEnd(1);
 //		ls.addAtEnd(2);
 //		ls.addAtEnd(3);
@@ -209,7 +229,7 @@ public class LinkedList {
 		//ls.removeAtLocation(1);
 		//ls.removeAtEnd();
 		//ls.removeAtBegining();
-		ls.printNodes();
+		//ls.printNodes();
 	}
 
 }
