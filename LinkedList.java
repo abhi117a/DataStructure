@@ -210,7 +210,7 @@ int GetNode(Node1 head,int n) {
     return p1.data;
 
 }
-Node1 RemoveDuplicates(Node1 head) {
+/*Node1 RemoveDuplicates(Node1 head) {
 	  if(head==null){
 	      return null;
 	  }
@@ -225,7 +225,52 @@ Node1 RemoveDuplicates(Node1 head) {
 	        }
 	        return head;
 	    }
+	}*/
+
+Node1 RemoveDuplicates(Node1 head) {
+	 boolean flag = true;
+	    if(head==null){
+	      return null;
+	  }
+	    else {
+	        while(flag == true){
+	        Node1 p = head;
+	        while(p.next != null){
+	            if(p.data == p.next.data){
+	                //p.next = null;
+	                p.next =p.next.next; 
+	            }
+	            p = p.next;
+	        }
+	            if(head.data == head.next.data){
+	                flag = true;
+	            }
+	            else {
+	                flag = false;
+	            }
+	        }
+	        return head;
+	    }
 	}
+
+public void remDuplicate (Node1 head){
+	if(head==null|| head.next==null){
+		System.out.println("Linkedlist is empty or having just one element");
+	}
+	Node1 p= head;
+	while(p.next!=null){
+		Node1 runner = p;
+		while(runner.next != null){
+			if(runner.next.data == p.data){
+				runner.next = runner.next.next;
+			}
+			else {
+				runner = runner.next;
+			}
+		}
+		p = p.next;
+	}
+}
 	
 	public static void main(String[] args) {
 		LinkedList ls = new LinkedList();
@@ -236,7 +281,8 @@ Node1 RemoveDuplicates(Node1 head) {
 		ls.addATBeginning(5);
 		ls.addATBeginning(5);
 		ls.addATBeginning(6);
-		System.out.println(ls.RemoveDuplicates(head));
+		ls.remDuplicate(head);
+		//System.out.println(ls.RemoveDuplicates(head));
 		//ls.reverseList();
 //		ls.addAtEnd(1);
 //		ls.addAtEnd(2);
@@ -245,7 +291,7 @@ Node1 RemoveDuplicates(Node1 head) {
 		//ls.removeAtLocation(1);
 		//ls.removeAtEnd();
 		//ls.removeAtBegining();
-		//ls.printNodes();
+		ls.printNodes();
 	}
 
 }
