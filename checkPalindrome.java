@@ -1,7 +1,7 @@
 package CTC_2;
 
 public class checkPalindrome {
-
+//Can also implement with HashTable O(N) the main logic is if alpha[i]%2!=0 then k++;
 	public void checkPalin(String str){
 		if(str.length()%2==0){
 			System.out.println("String cannot be a palindrome");
