@@ -186,6 +186,38 @@ public class LinkedLists_Nodes {
 		}
 	}
 	
+	public void findKthelement(int k){
+		Nodes p1 = head;
+		Nodes p2 = head;
+		while(p1.next!=null){
+			if(k>0){
+				p1 = p1.next;
+				k--;
+			}
+			else {
+				p1 = p1.next;
+				p2 = p2.next;
+			}
+		}
+		System.out.println(p2.item);
+		
+	}
+	
+	public void findKthElementUsingLength(int k){
+		Nodes p = head;
+		int len=1;
+		while(p.next != null){
+			len++;
+			p = p.next;
+		}
+		int fin = len-k;
+		p = head;
+		for(int i=1;i<fin;i++){
+			p = p.next;
+		}
+		System.out.println(p.item);
+	}
+	
 	
 	
 	public static void main(String[] args) {
@@ -197,7 +229,9 @@ public class LinkedLists_Nodes {
 		ln.addNodeAtTheEnd(54);
 		ln.addNodeAtTheEnd(76);
 		ln.addNodeAtTheEnd(76);
-		ln.removeDuplicates2Pointers();
+		ln.findKthelement(3);
+		ln.findKthElementUsingLength(3);
+		//ln.removeDuplicates2Pointers();
 		//ln.removeDuplicates();
 		//ln.removeFromStart();
 		//ln.removeFromKnownLocation(0);
@@ -207,7 +241,7 @@ public class LinkedLists_Nodes {
 //		ln.addAtTheStart(3);
 //		ln.addAtTheStart(4);
 		//ln.addAtKnownLocation(34, 1);
-		ln.printNodes();
+		//ln.printNodes();
 
 	}
 
