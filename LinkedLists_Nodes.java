@@ -1,5 +1,8 @@
 package CTC_2;
 
+import java.util.Hashtable;
+import java.util.Set;
+
 public class LinkedLists_Nodes {
 
 	static Nodes head;
@@ -120,17 +123,82 @@ public class LinkedLists_Nodes {
 		}
 	}
 	
+	public void removeDuplicates(){
+		Hashtable<Integer,Integer> ht = new Hashtable<Integer,Integer>();
+		
+		if(head==null || head.next==null){
+			System.out.println("No data or just one element");
+		}
+		else {
+			Nodes p = head;
+			while(p.next!=null){
+			if(ht.containsKey(p.next.item)){
+				if(p.next.next!=null){
+				Nodes temp = p.next.next;
+				p.next = null;
+				p.next = temp;
+				}
+				else{
+					p.next = null;
+					return;
+				}
+			}
+			else {
+				ht.put(p.next.item, 1);
+			}
+			p = p.next;
+			}
+		}
+	}
+	
+	public void removeDuplicates2Pointers(){
+		if(head==null || head.next==null){
+			System.out.println("No data or just 1 data");
+		}
+		else {
+			Nodes p1 = head;
+			Nodes p2 = p1.next;
+			while(p1.next!=null){
+					if(p1.item==p2.item){
+					if(p1.next.next!=null){
+						Nodes temp = p1.next.next;
+						p1.next = null;
+						p1.next = temp;
+						p2 = p1.next;
+						if(p2.next!=null){
+						p2= p2.next;
+						}
+						}
+					else {
+						p1.next = null;
+						return;
+					}
+					}
+					else {
+						if(p2.next==null && p1.next !=null){
+							p2 = p1.next;
+						}else{
+							p2 = p2.next;	
+						}
+					}
+			p1 = p1.next;
+			}
+		}
+	}
+	
+	
 	
 	public static void main(String[] args) {
 		LinkedLists_Nodes ln = new LinkedLists_Nodes();
 		ln.addNodeAtTheEnd(11);
 		ln.addNodeAtTheEnd(12);
 		ln.addNodeAtTheEnd(13);
+		ln.addNodeAtTheEnd(5);
 		ln.addNodeAtTheEnd(54);
-		ln.addNodeAtTheEnd(65);
 		ln.addNodeAtTheEnd(76);
-		ln.addNodeAtTheEnd(85);
-		
+		ln.addNodeAtTheEnd(76);
+		ln.removeDuplicates2Pointers();
+		//ln.removeDuplicates();
 		//ln.removeFromStart();
 		//ln.removeFromKnownLocation(0);
 		
@@ -138,7 +206,7 @@ public class LinkedLists_Nodes {
 //		ln.addAtTheStart(2);
 //		ln.addAtTheStart(3);
 //		ln.addAtTheStart(4);
-		ln.addAtKnownLocation(34, 1);
+		//ln.addAtKnownLocation(34, 1);
 		ln.printNodes();
 
 	}
