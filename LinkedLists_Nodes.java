@@ -6,6 +6,7 @@ import java.util.Set;
 public class LinkedLists_Nodes {
 
 	static Nodes head;
+	static Nodes head1;
 	public void addNodeAtTheEnd(int data){
 		if(head==null){
 			head = new Nodes();
@@ -36,12 +37,12 @@ public class LinkedLists_Nodes {
 	}
 	
 	
-	public void printNodes(){
-		if(head==null){
+	public void printNodes(Nodes mains){
+		if(mains==null){
 			System.out.println("No data");
 			return;
 		}
-		Nodes p = head; 
+		Nodes p = mains; 
 		while(p!=null){
 			System.out.println(p.item);
 			p = p.next;
@@ -218,19 +219,42 @@ public class LinkedLists_Nodes {
 		System.out.println(p.item);
 	}
 	
+	public void sortByGivenValue(int k){
+		Nodes p = head;
+		head1 = new Nodes();
+		head1.item = k;
+		Nodes f = head1;
+		while(p.next!=null){
+			if(p.item >= k ){
+				f.next = new Nodes();
+				f.next.item = p.item;
+				f = f.next;
+			}
+			else {
+				Nodes temp = new Nodes();
+				temp.item = p.item;
+				temp.next = head1;
+				head1 = temp;
+			}
+			p = p.next;
+		}
+		
+	}
+	
 	
 	
 	public static void main(String[] args) {
 		LinkedLists_Nodes ln = new LinkedLists_Nodes();
-		ln.addNodeAtTheEnd(11);
+		ln.addNodeAtTheEnd(91);
 		ln.addNodeAtTheEnd(12);
-		ln.addNodeAtTheEnd(13);
-		ln.addNodeAtTheEnd(5);
-		ln.addNodeAtTheEnd(54);
-		ln.addNodeAtTheEnd(76);
-		ln.addNodeAtTheEnd(76);
-		ln.findKthelement(3);
-		ln.findKthElementUsingLength(3);
+		ln.addNodeAtTheEnd(23);
+		ln.addNodeAtTheEnd(55);
+		ln.addNodeAtTheEnd(64);
+		ln.addNodeAtTheEnd(72);
+		ln.addNodeAtTheEnd(88);
+		ln.sortByGivenValue(55);
+		//ln.findKthelement(3);
+		//ln.findKthElementUsingLength(3);
 		//ln.removeDuplicates2Pointers();
 		//ln.removeDuplicates();
 		//ln.removeFromStart();
@@ -241,7 +265,7 @@ public class LinkedLists_Nodes {
 //		ln.addAtTheStart(3);
 //		ln.addAtTheStart(4);
 		//ln.addAtKnownLocation(34, 1);
-		//ln.printNodes();
+		ln.printNodes(head1);
 
 	}
 
