@@ -1,5 +1,6 @@
 package CTC_2;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Set;
 
@@ -240,19 +241,84 @@ public class LinkedLists_Nodes {
 		}
 		
 	}
+	public void manuplatingLinkedListUsingStringBuilder(){
+		Nodes p = head;
+		StringBuilder sb = new StringBuilder();
+		while(p.next != null){
+			sb.append(p.item);
+			p = p.next;
+		}
+		sb.append(p.item);
+		System.out.println("Straight LinkedList: "+sb);
+		System.out.println("Reverse LinkedList: "+sb.reverse());
+		System.out.println("Mathematical Manuplation: "+Integer.parseInt(sb.toString())+10000);
+	}
 	
 	
+	public void checkIfPalindrome(){
+		if(head==null && head.next==null){
+			System.out.println("Cannot be a palindrome");
+		}
+		else {
+			Nodes p = head;
+			int len = 1;
+			while(p.next != null){
+				len++;
+				p = p.next;
+				}
+			p = head;
+			int init=0;
+			int [] arr = new int [len];
+			while(p.next != null){
+				arr[init] = p.item;
+				init++;
+				p = p.next;
+			}
+			arr[init] = p.item;
+			if(len%2==0){
+				System.out.println("Cannot be a palindrome because of even length");
+				return;
+			}
+			else {
+				
+				int rev = arr.length-1;
+				for(int i=0;i<arr.length/2;i++){
+					if(arr[i]!=arr[rev]){
+						System.out.println("Not a palindrome");
+						return;
+					}
+				}
+				System.out.println("A palindrome");
+			}
+		}
+	}
 	
 	public static void main(String[] args) {
+		//StringBuilder sv = new StringBuilder();
+//		sv.append("2");
+//		sv.append("3");
+//		sv.append("4");
+//		sv.reverse();
+//		System.out.println(sv);
+//		int num = Integer.parseInt(sv.toString());
+//		System.out.println(num+1000);
+		
+		
 		LinkedLists_Nodes ln = new LinkedLists_Nodes();
-		ln.addNodeAtTheEnd(91);
-		ln.addNodeAtTheEnd(12);
-		ln.addNodeAtTheEnd(23);
-		ln.addNodeAtTheEnd(55);
-		ln.addNodeAtTheEnd(64);
-		ln.addNodeAtTheEnd(72);
-		ln.addNodeAtTheEnd(88);
-		ln.sortByGivenValue(55);
+		ln.addNodeAtTheEnd(1);
+		ln.addNodeAtTheEnd(2);
+		ln.addNodeAtTheEnd(3);
+		ln.checkIfPalindrome();
+		//ln.manuplatingLinkedListUsingStringBuilder();
+		
+		
+//		ln.addNodeAtTheEnd(55);
+//		ln.addNodeAtTheEnd(64);
+//		ln.addNodeAtTheEnd(72);
+//		ln.addNodeAtTheEnd(88);
+//		ln.sortByGivenValue(55);
+		
+		
 		//ln.findKthelement(3);
 		//ln.findKthElementUsingLength(3);
 		//ln.removeDuplicates2Pointers();
@@ -265,7 +331,7 @@ public class LinkedLists_Nodes {
 //		ln.addAtTheStart(3);
 //		ln.addAtTheStart(4);
 		//ln.addAtKnownLocation(34, 1);
-		ln.printNodes(head1);
+		//ln.printNodes(head1);
 
 	}
 
