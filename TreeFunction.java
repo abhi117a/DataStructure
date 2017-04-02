@@ -1,6 +1,9 @@
 package CTC_2;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -80,6 +83,25 @@ public class TreeFunction{
 		
 	}
 	
+	public int findMaxR(TreeNode root){
+		int MAX = Integer.MIN_VALUE;
+		if(root != null){
+			int leftMax = findMaxR(root.leftChild);
+			int rightMax = findMaxR(root.rightChild);
+			if(leftMax > rightMax){
+				MAX = leftMax;
+			}
+			if(rightMax > leftMax){
+				MAX = rightMax;
+			}
+			if(root.data > MAX){
+				MAX = root.data;
+			}
+		}
+		return MAX;
+	}
+	
+	
 	public void findminMax(TreeNode root){
 		int max;
 		Queue<TreeNode> queue = new LinkedList<TreeNode>();
@@ -100,6 +122,17 @@ public class TreeFunction{
 		}
 		System.out.println("Max value is "+max);
 		
+	}
+	
+	
+	public boolean findElementR(TreeNode root, int data){
+		if(root==null){
+			return false;
+		}
+		if(root.data==data){
+			return true;
+		}
+		return (findElementR(root.leftChild, data) ||findElementR(root.rightChild, data)); 
 	}
 	
 	public void findElement(TreeNode root, int lookup){
@@ -153,11 +186,12 @@ public class TreeFunction{
 			q.add(null);
 		}
 		while(!q.isEmpty()){
-			count++;
 			TreeNode temp = q.poll();
+			if(temp !=null){
 			count++;
+			}
 			if(temp == null){
-				count--;
+				//count--;
 				if(q.isEmpty()){
 					//System.out.println("Height is "+height);
 					break;
@@ -176,7 +210,7 @@ public class TreeFunction{
 			}
 		}
 			}
-		System.out.println("Size of Tree "+ height);
+		System.out.println("Size of Tree with level order traversal "+ height);
 		
 	}
 	
@@ -283,6 +317,14 @@ public class TreeFunction{
 	}
 	
 	
+	public int findSizeR(TreeNode root){
+		if (root== null){
+			return 0;
+		}
+		else{
+		return (findSizeR(root.leftChild)+1+findSizeR(root.rightChild));
+	}}
+	
 	public int sizeRec(TreeNode root){
 		
 		if(root== null){
@@ -335,14 +377,109 @@ public class TreeFunction{
 			stq = tempStq;
 		}
 	}
-	public void ch(){
-		System.out.println(!false);
+	public static void verticalSum(HashMap<Integer, Integer> hash,TreeNode root, int c){
+		if(root.leftChild!=null){
+			verticalSum(hash,root.leftChild, c-1);
+		}
+		if(root.rightChild!=null){
+			verticalSum(hash, root.rightChild, c+1);
+		}
+		int data =0;
+		if(hash.containsKey(c)){
+			data=hash.get(c);
+			hash.put(c, root.data+data);
+		}
+		
 	}
+	public static void vSum(TreeNode root){
+		HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();
+		verticalSum(hash, root, 0);
+		for(Entry<Integer, Integer> entry1 : hash.entrySet()){
+		System.out.println("check");
+			System.out.println("Key(pos): "+entry1.getKey()+"sum: "+entry1.getValue());
+		}
+		
+	}
+	
+	public void printPath(TreeNode root){
+		int Path[] = new int[1000];
+		pathCalc(root,Path,0);
+	}
+	private void pathCalc(TreeNode root, int Path[],int pathLen){
+		if(root==null){
+			return;
+		}
+		Path[pathLen] = root.data;
+		pathLen++;
+		
+		if(root.leftChild==null && root.rightChild==null){
+			printPathVal(Path,pathLen);
+		}
+		else{
+		pathCalc(root.leftChild,Path,pathLen);
+		pathCalc(root.rightChild,Path,pathLen);
+		}
+		}
+	
+	private void printPathVal(int Path[],int pathLen){
+		for(int p=0; p<pathLen;p++){
+			System.out.println(Path[p]);
+		}
+		System.out.println("****");
+	}
+	
+	
+	public int findSumofTree(TreeNode root){
+		if (root == null){
+			return 0;
+		}
+		else {
+			return (root.data+findSumofTree(root.leftChild)+findSumofTree(root.rightChild));
+		}
+		
+	}
+	
+	public void LevelOrderTraversal(TreeNode root){
+		Queue<TreeNode> qq = new LinkedList<TreeNode>();
+		int counter=0;
+		if(root!= null){
+			qq.add(root);
+			qq.add(null);
+		}
+		while(!qq.isEmpty()){
+			TreeNode temp= qq.poll();
+			if(temp!= null){
+				//counter++;
+			}
+			if(temp!=null){
+				if(temp.leftChild!=null){
+					qq.add(temp.leftChild);
+				}
+				if(temp.rightChild!=null){
+					qq.add(temp.rightChild);
+				}
+			}
+			else if(temp==null){
+				if(qq.isEmpty()){
+					return;
+				}
+				else {
+					qq.add(null);
+					counter++;
+					
+				}
+				
+			}
+		}
+			
+	}
+	
 
 	
 	
 	public static void main(String[] args) {
 		TreeFunction tf = new TreeFunction();
+		
 //		TreeFunction tf1 = new TreeFunction();
 //		tf1.addData(40);
 //		tf1.addData(20);
@@ -355,31 +492,34 @@ public class TreeFunction{
 		tf.addData(5);
 		tf.addData(2);
 		tf.addData(17);
-//		tf.addData(3);
-//		tf.addData(0);
-//		tf.addData(15);
-//		tf.addData(49);
-//		tf.addData(52);
-//		tf.addData(60);
+		tf.addData(3);
+		tf.addData(0);
+		tf.addData(15);
+		tf.addData(49);
+		tf.addData(52);
+		tf.addData(60);
 		//tf.inOrderTraversal(root);
 		System.out.println("*******************");
-		tf.levelOrderTraversal(root);
+		//tf.levelOrderTraversal(root);
 		//tf.findminMax(root);
 		//System.out.println("*******************");
 		//tf.findElement(root, 88);
-		System.out.println("*******************");
-		tf.printRev(root);
-		tf.heightAndNoNodes(root);
-		tf.countLeafNodes(root);
-		System.out.println("*******************");
-		tf.countNoFullNodes(root);
-		tf.findLevelWithMaxSum(root);
-		tf.findRecursion(root, 2);
-		tf.check();
-		System.out.println("SIze of Tree with recursion method is "+tf.sizeRec(root));
-		System.out.println("Sum of nodes are "+tf.sumOfNodes(root));
-		tf.zigZag(root);
-		tf.ch();
+//		System.out.println("*******************");
+//		tf.printRev(root);
+//		tf.heightAndNoNodes(root);
+//		tf.countLeafNodes(root);
+//		System.out.println("*******************");
+//		tf.countNoFullNodes(root);
+//		tf.findLevelWithMaxSum(root);
+//		tf.findRecursion(root, 2);
+//		tf.check();
+//		System.out.println("SIze of Tree with recursion method is "+tf.sizeRec(root));
+//		System.out.println("Sum of nodes are "+tf.sumOfNodes(root));
+//		tf.zigZag(root);
+//		tf.vSum(root);
+		
+		tf.printPath(root);
+		System.out.println(tf.findSumofTree(root));
 		}
 	
 }
