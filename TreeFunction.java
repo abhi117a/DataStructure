@@ -1,6 +1,7 @@
 package CTC_2;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -439,6 +440,22 @@ public class TreeFunction{
 		
 	}
 	
+	public boolean printAncestor(TreeNode root, int data){
+		if(root == null){
+			return false;
+		}
+		if(root.data == data){
+			return true;
+		}
+		if(printAncestor(root.leftChild, data)|| printAncestor(root.rightChild, data)){
+			System.out.println(root.data);
+			return true;
+		}
+		else{
+		return false;
+	}}
+	
+	
 	public void LevelOrderTraversal(TreeNode root){
 		Queue<TreeNode> qq = new LinkedList<TreeNode>();
 		int counter=0;
@@ -475,6 +492,86 @@ public class TreeFunction{
 	}
 	
 
+	public void VerticalSum(TreeNode root){
+		HashMap<Integer,Integer> hmap = new HashMap<Integer, Integer>();
+		vSum(hmap, root,0);
+		System.out.println("VSum ends");
+		
+		for(int k:hmap.keySet()){
+			System.out.println(k+" "+hmap.get(k));
+		}
+	}
+	private void vSum(HashMap<Integer, Integer> hmap, TreeNode root, int c){
+		if(root.leftChild!= null){
+			vSum(hmap,root.leftChild,c-1);
+		}
+		if(root.rightChild!= null){
+			vSum(hmap,root.rightChild,c+1);
+		}
+		int data =0;
+		if(hmap.containsKey(c)){
+			data = (int) hmap.get(c);
+			hmap.put(c, data+root.data);
+		}
+	}
+	
+	public void VerticalSumLevelOrder(TreeNode root){
+		HashMap<Integer,Integer>hmap = new HashMap<Integer,Integer>();
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		q.add(root); int c = 0; 
+		hmap.put(c, root.data);
+		
+		
+		while(!q.isEmpty()){
+			TreeNode temp = q.poll();	
+			if(temp.leftChild!=null){
+				c = c-1;
+				int tmpData =0;
+				if(hmap.containsKey(c)){
+					tmpData = (Integer)hmap.get(c);
+					hmap.put(c, temp.leftChild.data+tmpData);
+				}
+				else{
+				hmap.put(c, temp.leftChild.data);
+				}
+				q.add(temp.leftChild);
+			}
+			if(temp.rightChild!=null){
+				c = c+1;
+				int tmpData =0;
+				if(hmap.containsKey(c)){
+					tmpData = (Integer)hmap.get(c);
+					hmap.put(c, temp.rightChild.data+tmpData);
+				}
+				else{
+				hmap.put(c, temp.rightChild.data);
+				}
+				q.add(temp.rightChild);
+			}
+			
+		}
+		
+		for(int k: hmap.keySet()){
+			System.out.println(k+" "+hmap.get(k));
+		}
+		
+	}
+	
+	public boolean checkIfBST(TreeNode root){
+		return BSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+	
+	private boolean BSTUtil(TreeNode root, int min, int max){
+		if(root == null){
+			return false;
+		}
+		if(root.data < min && root.data > max){
+			return false;
+		}
+		
+			return (BSTUtil(root.leftChild, min, root.data-1)&& BSTUtil(root.leftChild, root.data+1, max)); 
+		
+	}
 	
 	
 	public static void main(String[] args) {
@@ -517,9 +614,11 @@ public class TreeFunction{
 //		System.out.println("Sum of nodes are "+tf.sumOfNodes(root));
 //		tf.zigZag(root);
 //		tf.vSum(root);
-		
-		tf.printPath(root);
-		System.out.println(tf.findSumofTree(root));
+		tf.VerticalSumLevelOrder(root);
+		//tf.VerticalSum(root);
+		//tf.printAncestor(root, 49);
+		//tf.printPath(root);
+		//System.out.println(tf.findSumofTree(root));
 		}
 	
 }
